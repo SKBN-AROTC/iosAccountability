@@ -49,14 +49,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         print("locations = \(locValue.latitude) \(locValue.longitude)")
         locLabel.text = "\(locValue.latitude) \(locValue.longitude)" // Debug purposes
         
+        // Create Debug Alert
+        let alert = UIAlertController(title: "Debug", message: "Valid: \(atSKBN(x: locValue.latitude, y: locValue.longitude))", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        print(atSKBN(x: locValue.latitude, y: locValue.longitude))
         
     }
+    
+    
 
     // SKBN Geofence
-    func atSKBN(x: Int, y: Int) -> Bool{
+    // Coordinates: 40.504017, -74.452259
+    // Error Margin 0.0001
+    func atSKBN(x: Double, y: Double) -> Bool{
         // Longitude bounds
-        if (x >= 0 && x <= 1000){
-            if (y >= 0 && y <= 1000){
+        if ((x >= 40.5035) && (x <= 40.5045)){
+            if ((y >= -74.4527) && (y <= -74.4517)){
                 return true
             }
         }
