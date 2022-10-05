@@ -11,12 +11,8 @@ import CoreLocation
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
     // GUI Elements
-    let locLabel = UILabel()
-    let timeLabel = UILabel()
-    let button = UIButton()
-    
-    // Date time
-    let date = Date()
+    @IBOutlet weak var locLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     // GPS
     let locationManager = CLLocationManager()
@@ -41,10 +37,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func buttonClicked() {
         // print current time
+        let date = Date()
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: date)
         let minutes = calendar.component(.minute, from: date)
-        print("time = \(hour):\(minutes)")
+        print("time = \(hour):\(minutes)") // Debug purposes
         timeLabel.text = "\(hour):\(minutes)" // Debug purposes
         
         // print current gps
@@ -55,6 +52,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
     }
 
+    // SKBN Geofence
+    func atSKBN(x: Int, y: Int) -> Bool{
+        // Longitude bounds
+        if (x >= 0 && x <= 1000){
+            if (y >= 0 && y <= 1000){
+                return true
+            }
+        }
+        return false
+    }
 
 }
 
