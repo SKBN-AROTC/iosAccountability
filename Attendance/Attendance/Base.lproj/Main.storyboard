@@ -61,7 +61,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Sign in"/>
                                         <connections>
-                                            <action selector="buttonClicked" destination="BYZ-38-t0r" eventType="touchDown" id="T3d-PF-f9v"/>
+                                            <action selector="buttonClicked" destination="BYZ-38-t0r" eventType="touchDown" id="bFG-hu-5nQ"/>
                                         </connections>
                                     </button>
                                 </subviews>

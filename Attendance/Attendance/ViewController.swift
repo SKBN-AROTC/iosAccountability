@@ -8,11 +8,18 @@
 import UIKit
 import CoreLocation
 
+// Firebase imports
+import FirebaseCore
+import FirebaseDatabase
+
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
     // GUI Elements
     @IBOutlet weak var locLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+
+    // Firebase
+    var ref: DatabaseReference!
     
     // GPS
     let locationManager = CLLocationManager()
@@ -32,6 +39,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
+        
+        // Firebase setup
+        FirebaseApp.configure()
+        ref = Database.database().reference()
+
 
     }
     
@@ -55,13 +67,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         self.present(alert, animated: true, completion: nil)
         print(atSKBN(x: locValue.latitude, y: locValue.longitude))
         
+        if(atSKBN(x: locValue.latitude, y: locValue.longitude)){
+            self.ref.child("Present").setValue(["Test Person"])
+        }
+        
     }
     
-    
-
     // SKBN Geofence
     // Coordinates: 40.504017, -74.452259
-    // Error Margin 0.0001
+    // Error Margin 0.0005
     func atSKBN(x: Double, y: Double) -> Bool{
         // Longitude bounds
         if ((x >= 40.5035) && (x <= 40.5045)){
