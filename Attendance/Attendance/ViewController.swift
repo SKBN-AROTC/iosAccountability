@@ -11,12 +11,17 @@ import CoreLocation
 // Firebase imports
 import FirebaseCore
 import FirebaseDatabase
+import FirebaseAuth
+
+// Google Auth
+import GoogleSignIn
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
     // GUI Elements
     @IBOutlet weak var locLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    
 
     // Firebase
     var ref: DatabaseReference!
@@ -43,34 +48,44 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         // Firebase setup
         FirebaseApp.configure()
         ref = Database.database().reference()
-
-
+        
     }
     
     @IBAction func buttonClicked() {
-        // print current time
-        let date = Date()
-        let calendar = Calendar.current
-        let hour = calendar.component(.hour, from: date)
-        let minutes = calendar.component(.minute, from: date)
-        print("time = \(hour):\(minutes)") // Debug purposes
-        timeLabel.text = "\(hour):\(minutes)" // Debug purposes
-        
-        // print current gps
-        guard let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate else { return }
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
-        locLabel.text = "\(locValue.latitude) \(locValue.longitude)" // Debug purposes
-        
-        // Create Debug Alert
-        let alert = UIAlertController(title: "Debug", message: "Valid: \(atSKBN(x: locValue.latitude, y: locValue.longitude))", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-        print(atSKBN(x: locValue.latitude, y: locValue.longitude))
-        
-        if(atSKBN(x: locValue.latitude, y: locValue.longitude)){
-            self.ref.child("Present").setValue(["Test Person"])
+
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { [self] user, error in
+            guard error == nil else {
+                let  alert = UIAlertController(title: "INVALID LOGIN ATTEMPT", message: "Please try again", preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                return
+            }
+            
+            var netid = "\(GIDSignIn.sharedInstance.currentUser!.profile!.email)"
+            let scarletmail = "@scarletmail.rutgers.edu"
+            if netid.contains(scarletmail) {
+                netid = netid.replacingOccurrences(of: "@scarletmail.rutgers.edu", with: "")
+            }
+            
+            // get current gps
+            guard let locValue: CLLocationCoordinate2D = locationManager.location?.coordinate else { return }
+
+            // Create Location Alert
+            let alert = UIAlertController(title: "INVALID LOCATION ATTEMPT", message: "Valid: \(atSKBN(x: locValue.latitude, y: locValue.longitude))", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            print(atSKBN(x: locValue.latitude, y: locValue.longitude))
+
+            if(atSKBN(x: locValue.latitude, y: locValue.longitude)){
+                self.ref.child("Present").setValue([netid])
+            }
+
         }
-        
+       
     }
     
     // SKBN Geofence
