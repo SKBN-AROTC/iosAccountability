@@ -71,16 +71,11 @@ class SignInViewController: UIViewController, CLLocationManagerDelegate {
         let alert = UIAlertController(title: "INVALID LOCATION ATTEMPT", message: "Valid: \(atSKBN(x:locValue.latitude, y: locValue.longitude))", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
-        print(atSKBN(x: locValue.latitude, y: locValue.longitude))
         
-        //            if(atSKBN(x: locValue.latitude, y: locValue.longitude)){
-        //                self.ref.child("").setValue([netid])
-        //            }
-        
-                    let profile = GIDSignIn.sharedInstance.currentUser!.profile!
-                    self.ref.child(formattedDate).setValue(profile.name)
+        let profile = GIDSignIn.sharedInstance.currentUser!.profile!
+        self.ref.child(formattedDate).setValue(profile.name)
     }
-    
+        
     // SKBN Geofence
     // Coordinates: 40.504017, -74.452259
     // Error Margin 0.0005

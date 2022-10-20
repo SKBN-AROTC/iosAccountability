@@ -36,6 +36,11 @@ class LoginViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
                 return
             }
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let tabbar = storyboard.instantiateViewController(withIdentifier: "tabbar") as! UITabBarController
+            tabbar.modalPresentationStyle = .fullScreen
+            self.present(tabbar, animated: true, completion: nil)
         }
     }
 
