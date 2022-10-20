@@ -18,7 +18,6 @@ import GoogleSignIn
 
 class SignInViewController: UIViewController, CLLocationManagerDelegate {
     
-    // GUI Elements
     @IBOutlet weak var locLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
@@ -73,7 +72,7 @@ class SignInViewController: UIViewController, CLLocationManagerDelegate {
         self.present(alert, animated: true, completion: nil)
         
         let profile = GIDSignIn.sharedInstance.currentUser!.profile!
-        self.ref.child(formattedDate).setValue(profile.name)
+        self.ref.child(formattedDate).setValue([profile.name])
     }
         
     // SKBN Geofence

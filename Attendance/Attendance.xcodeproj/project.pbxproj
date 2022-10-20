@@ -32,6 +32,7 @@
 		956C3C4828EE5AFE00DC9054 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 956C3C4728EE5AFE00DC9054 /* FirebaseRemoteConfigSwift */; };
 		956C3C4A28EE5AFE00DC9054 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 956C3C4928EE5AFE00DC9054 /* FirebaseStorage */; };
 		956C3C4C28EE5AFE00DC9054 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 956C3C4B28EE5AFE00DC9054 /* FirebaseStorageCombine-Community */; };
+		9575B975290130510040A2DB /* RosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9575B974290130510040A2DB /* RosterViewController.swift */; };
 		957C49F72900A6D70000A974 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957C49F62900A6D70000A974 /* LoginViewController.swift */; };
 		9591806F28EE4C45000F9FD1 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9591806E28EE4C45000F9FD1 /* FirebaseAnalytics */; };
 		9591807128EE4C45000F9FD1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9591807028EE4C45000F9FD1 /* FirebaseAuth */; };
@@ -47,6 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9575B974290130510040A2DB /* RosterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RosterViewController.swift; sourceTree = "<group>"; };
 		957C49F62900A6D70000A974 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9591807828EE5023000F9FD1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		95EA616228EB9CFA006F8690 /* Attendance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Attendance.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +132,7 @@
 				95EA616728EB9CFA006F8690 /* SceneDelegate.swift */,
 				957C49F62900A6D70000A974 /* LoginViewController.swift */,
 				95EA616928EB9CFA006F8690 /* SignInViewController.swift */,
+				9575B974290130510040A2DB /* RosterViewController.swift */,
 				95EA616B28EB9CFA006F8690 /* Main.storyboard */,
 				95EA616E28EB9CFB006F8690 /* Assets.xcassets */,
 				95EA617028EB9CFB006F8690 /* LaunchScreen.storyboard */,
@@ -246,6 +249,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9575B975290130510040A2DB /* RosterViewController.swift in Sources */,
 				957C49F72900A6D70000A974 /* LoginViewController.swift in Sources */,
 				95EA616A28EB9CFA006F8690 /* SignInViewController.swift in Sources */,
 				95EA616628EB9CFA006F8690 /* AppDelegate.swift in Sources */,
